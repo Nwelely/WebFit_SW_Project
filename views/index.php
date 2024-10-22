@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nutrition, Gym, and Supplements</title>
 
-  <link rel="stylesheet" href="Home-Style.css" />
+  <link rel="stylesheet" href="../css/Home-Style.css">
 </head>
 
 <body>
