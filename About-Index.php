@@ -9,8 +9,8 @@
 </head>
 
 <body>
-
-  <?php include 'partials/Navigation-Index.php'; ?>
+ 
+  <?php include('partials/Navigation-Index.php'); ?>
 
   <div class="about-section">
     <h1 id="header">About Us</h1>
@@ -31,7 +31,7 @@
   <h1 class="title">Our Team</h1>
   <div class="card-container">
     <div class="card">
-      <img src="../public/images/jj pic.jpg" alt="James" class="card-image" />
+      <img src="../images/jj pic.jpg" alt="James" class="card-image" />
       <div class="container">
         <h2>Mohamed Gamal</h2>
         <p>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="card">
-      <img src="../public/images/nw pic.JPG" alt="Nour El Welely" class="card-image" />
+      <img src="../images/nw pic.JPG" alt="Nour El Welely" class="card-image" />
       <div class="container">
         <h2>Nour El Welely</h2>
         <p>
@@ -58,7 +58,7 @@
     </div>
 
     <div class="card">
-      <img src="../public/images/yassin pic.jpg" alt="Yassin Ehab" class="card-image" />
+      <img src="../images/yassin pic.jpg" alt="Yassin Ehab" class="card-image" />
       <div class="container">
         <h2>Yassin Ehab</h2>
         <p>
@@ -67,12 +67,12 @@
           creativity, I embody a life rich in exploration and expression, continually seeking inspiration from the world
           around me.
         </p>
-        <p>yassin@gmail.com</p>
+        <p>yassin@gamil.com</p>
       </div>
     </div>
 
     <div class="card">
-      <img src="../public/images/ziad pic.jpg" alt="Ziad Mohamed" class="card-image" />
+      <img src="../images/ziad pic.jpg" alt="Ziad Mohamed" class="card-image" />
       <div class="container">
         <h2>Ziad Mohamed</h2>
         <p>
@@ -85,7 +85,7 @@
     </div>
   </div>
 
-  <p><a href="../views/about-contact-form" class="contact-button">Contact Us</a></p>
+  <p><a href="/about-contact-form" class="contact-button">Contact Us</a></p>
 
   <script src="../public/js/About-JavaScript.js"></script>
 </body>

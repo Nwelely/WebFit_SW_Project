@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us</title>
-    <link rel="stylesheet" href="/css/About-Contact-Form-Style.css" />
+    <link rel="stylesheet" href="../public/css/About-Contact-Form-Style.css" />
 </head>
 <body>
-    <!-- Include the navigation bar (PHP version of EJS include) -->
+
     <?php include 'partials/Navigation-Index.php'; ?>
 
     <div class="container">
@@ -26,6 +26,6 @@
         </form>
     </div>
 
-    <script src="/js/About-Contact-Form-JavaScript.js"></script>
+    <script src="../public/js/About-Contact-Form-JavaScript.js"></script>
 </body>
 </html>
