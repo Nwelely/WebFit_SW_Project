@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nutrition, Gym, and Supplements</title>
 
-  <link rel="stylesheet" href="../css/Home-Style.css">
+  <link rel="stylesheet" href="../public/css/Home-Style.css">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
       <div class="content">
         <div class="card" id="coachescard" onclick="redirectToCoachesPage()">
           <div class="icon">
-            <img src="/images/coachphoto.jpeg" class="coachimage" />
+            <img src="../public/images/coachphoto.jpeg" class="coachimage" />
           </div>
           <div class="coachcard">
             <h3>Coaches</h3>
@@ -70,7 +70,7 @@
 
         <div class="card" id="membershipCard">
           <div class="icon">
-            <img src="/images/planss.jpeg" class="plansimage" />
+            <img src="../public/images/planss.jpeg" class="plansimage" />
           </div>
           <div class="info">
             <h3>Membership Plans</h3>
@@ -84,7 +84,7 @@
 
         <div class="card" id="shopcard">
           <div class="icon">
-            <img src="/images/shop.jpeg" class="shopimage" />
+            <img src="../public/images/shop.jpeg" class="shopimage" />
           </div>
           <div class="shopcard">
             <h3>Shop Products</h3>
@@ -98,7 +98,7 @@
       </div>
     </section>
 
-    <script src="/js/Home-JavaScript.js"></script>
+    <script src="../public/js/Home-JavaScript.js"></script>
 </body>
 
 </html>
