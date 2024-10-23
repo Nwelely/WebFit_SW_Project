@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <?php include('Navigation-Index.php'); ?>
+  <?php include('partials/Navigation-Index.php'); ?>
 
     <section class="background-image">
       <div class="quote">
