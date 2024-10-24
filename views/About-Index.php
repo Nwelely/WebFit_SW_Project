@@ -9,8 +9,8 @@
 </head>
 
 <body>
-
-  <?php include 'partials/Navigation-Index.php'; ?>
+ 
+  <?php include('partials/Navigation-Index.php'); ?>
 
   <div class="about-section">
     <h1 id="header">About Us</h1>
@@ -67,7 +67,7 @@
           creativity, I embody a life rich in exploration and expression, continually seeking inspiration from the world
           around me.
         </p>
-        <p>yassin@gmail.com</p>
+        <p>yassin@gamil.com</p>
       </div>
     </div>
 
@@ -85,7 +85,7 @@
     </div>
   </div>
 
-  <p><a href="../views/about-contact-form" class="contact-button">Contact Us</a></p>
+  <p><a href="/about-contact-form" class="contact-button">Contact Us</a></p>
 
   <script src="../public/js/About-JavaScript.js"></script>
 </body>
