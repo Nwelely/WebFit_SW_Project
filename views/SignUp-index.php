@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <?php include('partials/Navigation-Index.php'); ?> <!-- Replacing EJS include with PHP include -->
+    <?php include('partials/Navigation-Index.php'); ?>
 
     <div class="form-container" id="signup-container">
         <h2>Signup</h2>
