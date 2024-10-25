@@ -30,7 +30,7 @@
           <?php } ?>
         <?php } ?>
       <?php } else { ?>
-        <a id="login-link" href="/auth/login">Login</a>
+        <a id="login-link" href="/WebFit_SW_Project/views/login-index.php">Login</a>
       <?php } ?>
     </nav>
   </div>
@@ -43,6 +43,6 @@
     </div>
   <?php } ?>
 
-  <script src="/js/Navigation-JavaScript.js"></script>
+  <script src="../public/js/Navigation-JavaScript.js"></script>
 </body>
 </html>

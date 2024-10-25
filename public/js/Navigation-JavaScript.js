@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.add('dark-mode');
     darkModeButton.textContent = 'Light Mode';
   } else {
-    document.body.classList.remove('dark-mode');
-    darkModeButton.textContent = 'Dark Mode';
+    // document.body.classList.remove('dark-mode');
+    // darkModeButton.textContent = 'Dark Mode';
   }
 });
