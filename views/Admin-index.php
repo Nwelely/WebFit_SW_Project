@@ -25,7 +25,59 @@
                             <a href="#" class="submenu-link" onclick="toggleVisibility('removeUserContainer'), removeUser()">Remove User</a>
                         </div>
                     </div>
-                   
+                    <div>
+                            <a href="#" class="main-menu-button"
+                                onclick="toggleMainMenu('mealsMenu'), toggleVisibility('Mealview')">Meals</a>
+                            <div id="mealsMenu" class="submenu">
+                                <a href="/user/meal" class="submenu-link">View Meals</a>
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('addMealContainer')">Add
+                                    Meals</a>
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('editMealContainer')">Edit
+                                    Meals</a>
+                                <a href="#" class="submenu-link"
+                                    onclick="toggleVisibility('removeMealContainer')">Remove Meals</a>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#" class="main-menu-button"
+                                onclick="toggleMainMenu('productsMenu'), toggleVisibility('Productview')">Products</a>
+                            <div id="productsMenu" class="submenu">
+                                <a href="/shop" class="submenu-link">View Products</a>
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('addProductsContainer')">Add
+                                    Products</a>
+                                <a href="#" class="submenu-link"
+                                    onclick="toggleVisibility('editProductsContainer')">Edit Products</a>
+                                <a href="#" class="submenu-link"
+                                    onclick="toggleVisibility('removeProductsContainer')">Remove Products</a>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#" class="main-menu-button"
+                                onclick="toggleMainMenu('coachesMenu'), toggleVisibility('Coachview')">Coaches</a>
+                            <div id="coachesMenu" class="submenu">
+                                <a href="/coaches" class="submenu-link">View Coaches</a>
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('addCoachesContainer')">Add
+                                    Coaches</a>
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('editCoachesContainer')">Edit
+                                    Coaches</a>
+                                <a href="#" class="submenu-link"
+                                    onclick="toggleVisibility('removeCoachesContainer')">Remove Coaches</a>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#" class="main-menu-button"
+                                onclick="toggleMainMenu('ExcerciseMenu'), toggleVisibility('Exerciseview')">Exercises</a>
+                            <div id="ExcerciseMenu" class="submenu">
+                                <a href="/user/front-workout" class="submenu-link">View Exercises</a>
+                                <a href="#" class="submenu-link" onclick="toggleVisibility('addExerciseContainer')">Add
+                                    Exercises</a>
+                                <a href="#" class="submenu-link"
+                                    onclick="toggleVisibility('editExerciseContainer')">Edit Exercises</a>
+                                <a href="#" class="submenu-link"
+                                    onclick="toggleVisibility('removeExerciseContainer')">Remove Exercises</a>
+                            </div>
+                        </div>
+                        
                 </div>
             </div>
         </div>

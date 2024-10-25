@@ -14,10 +14,10 @@
     </header>
     <nav class="nav-container">
       <a href="/WebFit_SW_Project/views/index.php">Home</a>
-      <a href="/WebFit_SW_Project/views//about-index.php">About Us</a>
+      <a href="/WebFit_SW_Project/views/about-index.php">About Us</a>
       <a href="/WebFit_SW_Project/views//shop">Shop</a>
       <a href="/WebFit_SW_Project/views/Contact-Form-index.php">Contact</a>
-      <a href="/WebFit_SW_Project/views//plans-index.php">Join Us</a>
+      <a href="/WebFit_SW_Project/views/plans-index.php">Join Us</a>
       
       <?php if (isset($user) && isset($user['username'])) { ?>
         <?php if ($currentPage === 'profile' || $currentPage === 'admin') { ?>
