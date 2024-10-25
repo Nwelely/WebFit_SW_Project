@@ -228,7 +228,24 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.add('dark-mode');
       darkModeButton.textContent = 'Light Mode';
     } else {
-      document.body.classList.remove('dark-mode');
-      darkModeButton.textContent = 'Dark Mode';
+      // document.body.classList.remove('dark-mode');
+      // darkModeButton.textContent = 'Dark Mode';
     }
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Access elements after DOM is fully loaded
+    const loginForm = document.getElementById('login-form');
+    const loginButton = document.getElementById('login-button');
+
+    // Check if elements exist
+    if (loginForm && loginButton) {
+        loginButton.textContent = 'Login'; // Example modification
+        loginForm.addEventListener('submit', function(event) {
+            // Add any client-side validation or behavior here
+            console.log('Form is being submitted');
+        });
+    } else {
+        console.warn('Login form or button not found in the DOM.');
+    }
+});
