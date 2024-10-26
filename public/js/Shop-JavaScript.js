@@ -1,21 +1,25 @@
 let cart = [];
 async function fetchProducts() {
   const productsData = [
-    { id: 1, name: "Product 1", price: 19.99, image: "../public/images/Gym_bottle3.jpg" },
-    { id: 2, name: "Product 2", price: 29.99, image: "../Images/2.jpg" },
-    { id: 3, name: "Product 3", price: 39.99, image: "../Images/4.avif" },
-    { id: 4, name: "Product 4", price: 69.99, image: "../Images/6.webp" },
-    { id: 5, name: "Product 5", price: 49.99, image: "../Images/8.webp" },
-    { id: 6, name: "Product 6", price: 121.99, image: "../Images/1.jpg" },
-    { id: 7, name: "Product 7", price: 29.99, image: "../Images/2.jpg" },
-    { id: 8, name: "Product 8", price: 49.99, image: "../Images/4.avif" },
-    { id: 9, name: "Product 9", price: 69.99, image: "../Images/6.webp" },
-    { id: 10, name: "Product 10", price: 89.99, image: "../Images/8.webp" },
-    { id: 11, name: "Product 11", price: 184.99, image: "../Images/1.jpg" },
-    { id: 12, name: "Product 12", price: 29.99, image: "../Images/2.jpg" },
-    { id: 13, name: "Product 13", price: 89.99, image: "../Images/4.avif" },
-    { id: 14, name: "Product 14", price: 39.99, image: "../Images/6.webp" },
-    { id: 15, name: "Product 15", price: 85.99, image: "../Images/8.webp" },
+    { id: 1, name: "gym bottle", price: 10.99, image: "../public/images/Gym_bottle3.jpg" },
+    { id: 2, name: "steel fusion", price: 29.99, image: "../public/images/Images/1.jpg" },
+    { id: 3, name: "creatine", price: 39.99, image: "../public/images/Creatine.jpg" },
+    { id: 4, name: "BCAA", price: 49.99, image: "../public/images/6.webp" },
+    { id: 5, name: "black steel", price: 49.99, image: "../public/images/8.webp" },
+    { id: 6, name: "dumbells", price: 121.99, image: "../public/images/dumbells.jpg" },
+    { id: 7, name: "big gym bottle", price: 29.99, image: "../public/images/gym_bottle_big.webp" },
+    { id: 8, name: "gym mat", price: 9.99, image: "../public/images/gym mat.avif" },
+    { id: 9, name: "gym shorts", price: 8.99, image: "../public/images/gym shorts.jpg" },
+    { id: 10, name: "mid gym bottle", price: 19.99, image: "../public/images/gym_bottle_mid.webp" },
+    { id: 11, name: "small gym bottle", price: 9.99, image: "../public/images/gym_bottle_small.webp" },
+    { id: 12, name: "gym bottle", price: 7.99, image: "../public/images/Gym_bottle2.jpg" },
+    { id: 13, name: "Product 13", price: 69.99, image: "../public/images/Protein powder.jpg" },
+    { id: 14, name: "pre workout", price: 29.99, image: "../public/images/pre workout.jpg" },
+    { id: 15, name: "training tshirt", price: 17.99, image: "../public/images/training tshirts.jpg" },
+    { id: 16, name: "BCAA", price: 47.99, image: "../public/images/BCA.jpg" },
+    { id: 17, name: "gym bottle", price: 12.99, image: "../public/images/Gym_bottle3.png" },
+
+
   ];
   return productsData;
 }
