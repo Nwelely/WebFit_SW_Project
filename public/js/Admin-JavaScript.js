@@ -45,19 +45,28 @@ function toggleVisibility(containerId) {
     }
 }
 
-let selectedUserId = null;
-async function selectUser(userId) {
-    selectedUserId = userId;
+// document.querySelectorAll('#user-buttons button').forEach(button => {
+//     button.addEventListener('click', () => {
+//         const userId = button.dataset.userId;
+//         getUserData(userId);
+//     });
+// });
 
-    await fetch(`/auth/user/${userId}`)
-        .then(response => response.json())
-        .then(user => {
-            sessionStorage.setItem('selectedUser', JSON.stringify(user));
-        })
-        .catch(error => {
-            console.error('Error fetching user data:', error);
-        });
-}
+// function getUserData(userId) {
+//     // AJAX request to fetch user data
+//     fetch(`/get_user_data.php?user_id=${userId}`)
+//         .then(response => response.json())
+//         .then(userData => {
+//             // Process the fetched user data
+//             console.log(userData);
+//             // Update the UI or perform other actions
+//         })
+//         .catch(error => {
+//             console.error('Error fetching user data:', error);
+//         });
+// }
+
+
 
 let selectedProductId = null;
 async function selectProduct(productId) {
@@ -177,8 +186,41 @@ function populateCoachForms(coach) {
     document.getElementById('removeCoachName').value = coach.coachname;
 }
 
+function getUserData(userId) {
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+    
+    // Configure it: GET-request for the URL /api/getUser Data.php with userId as a query parameter
+    xhr.open('GET', '/api/getUser Data.php?id=' + userId, true);
+    
+    // Set up a function to handle the response
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Parse the JSON response
+            var userData = JSON.parse(xhr.responseText);
+            
+            // Populate the user details in the appropriate HTML elements
+            document.getElementById('viewImage').src = userData.image; // assuming userData.image contains the image URL
+            document.getElementById('viewUsername').innerText = userData.username;
+            document.getElementById('viewFullName').innerText = userData.fullName;
+            document.getElementById('viewEmail').innerText = userData.email;
+            document.getElementById('viewPhone').innerText = userData.phone;
+            document.getElementById('viewRole').innerText = userData.role;
+            document.getElementById('viewGender').innerText = userData.gender;
+            document.getElementById('viewAge').innerText = userData.age;
+            document.getElementById('viewAddress').innerText = userData.address;
+            document.getElementById('viewSubscription').innerText = userData.subscription;
 
-
+            // Show the user details container
+            toggleVisibility('ViewUser Container');
+        } else {
+            console.error('Error retrieving user data: ' + xhr.statusText);
+        }
+    };
+    
+    // Send the request
+    xhr.send();
+}
 
 
 
@@ -223,14 +265,60 @@ function editUser() {
 }
 
 function removeUser() {
+    // Retrieve selected user from sessionStorage
     const user = JSON.parse(sessionStorage.getItem('selectedUser'));
 
-    document.getElementById('removeUsersName').value = user.username;
-    document.getElementById('removeUsersId').value = user._id;
+    // Check if user data is available
+    if (user) {
+        // Populate the form fields with the selected user's data
+        document.getElementById('removeUsersName').value = user.username;
+        document.getElementById('removeUsersId').value = user.id; // Assuming 'id' is the correct key
 
-    document.getElementById('removeUserContainer').classList.remove('hidden');
+        // Show the remove user container
+        document.getElementById('removeUserContainer').classList.remove('hidden');
+
+        // Set the global selectedUserId variable
+        window.selectedUserId = user.id; // Set the global variable for use in the delete request
+    } else {
+        console.error("No user selected.");
+    }
 }
 
+// Call this function to delete the user
+async function confirmRemoveUser() {
+    const userId = window.selectedUserId; // Get the user ID from the global variable
+
+    if (!userId) {
+        console.error("User ID is not set.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`/auth/user/${userId}`, {
+            method: 'DELETE'
+        });
+
+        const data = await response.json();
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.message);
+            // Optionally, hide the remove user container or refresh the user list
+            toggleVisibility('removeUserContainer');
+        }
+    } catch (error) {
+        console.error('Error deleting user:', error);
+    }
+}
+
+// Example of calling the delete function on link click
+document.querySelector('.submenu-link').addEventListener('click', function() {
+    toggleVisibility('removeUserContainer'); // Show the confirmation modal or container
+    confirmRemoveUser(); // Call the confirm function to proceed with deletion
+});
+
+
+// Event listener for editing user form
 document.getElementById('editUsersForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
@@ -239,39 +327,41 @@ document.getElementById('editUsersForm').addEventListener('submit', async functi
         method: 'PUT',
         body: formData
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                alert(data.error);
-            } else {
-                alert(data.message);
-                toggleVisibility('editUserContainer');
-            }
-        })
-        .catch(error => {
-            console.error('Error updating user:', error);
-            alert('An error occurred while updating the user.');
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.message);
+            toggleVisibility('editUserContainer');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating user:', error);
+        alert('An error occurred while updating the user.');
+    });
 });
 
+// Event listener for removing user form
 document.getElementById('removeUsersForm').addEventListener('submit', async function (event) {
     event.preventDefault();
 
     await fetch(`/auth/user/${selectedUserId}`, {
         method: 'DELETE'
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                alert(data.error);
-            } else {
-                alert(data.message);
-                toggleVisibility('removeUserContainer');
-            }
-        })
-        .catch(error => {
-            console.error('Error deleting user:', error);
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            alert(data.message);
+            toggleVisibility('removeUserContainer');
+            // Optionally, you might want to refresh the user list or redirect
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting user:', error);
+    });
 });
 
 
