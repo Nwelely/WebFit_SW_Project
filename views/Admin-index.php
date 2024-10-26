@@ -11,6 +11,7 @@
 
 <body>
     <?php 
+    include_once("../config/DB.php");
     // Handle user signup
 if (isset($_POST['signup'])) {
     $fullname = sanitizeInput($_POST['fullname']);
@@ -59,20 +60,21 @@ if (isset($_POST['signup'])) {
     }
 }
     // Display all users
-function displayAllUsers() {
+    function displayAllUsers() {
     global $conn;
 
     $sql = "SELECT * FROM users";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            echo "ID: " . $row["id"]. " - Name: " . $row["fullname"]. " - Email: " . $row["useremail"]. "<br>";
+    $users = [];
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
         }
-    } else {
-        echo "0 results";
     }
+    return $users;
 }
+
 // Handle user update
 if (isset($_POST['updateUser'])) {
     $userId = sanitizeInput($_POST['userId']);
@@ -210,16 +212,20 @@ if (isset($_POST['deleteUser'])) {
         </div>
 
      
-        <div class="container hidden" id="Userview">
-            <h2>Users</h2>
-            <div id="user-buttons" class="btn-group-vertical">
-                <?php foreach ($users as $user) { ?>
-                    <button type="button" class="btn btn-success mb-2" value="<?= $user['_id'] ?>" onclick="selectUser('<?= $user['_id'] ?>')">
-                        <?= $user['username'] ?>
-                    </button>
-                <?php } ?>
-            </div>
-        </div>
+        <?php
+$users = displayAllUsers();
+?>
+
+<div class="container hidden" id="Userview">
+    <h2>Users</h2>
+    <div id="user-buttons" class="btn-group-vertical">
+        <?php foreach ($users as $user) { ?>
+            <button type="button" class="btn btn-success mb-2" value="<?= $user['id'] ?>" onclick="selectUser('<?= $user['id'] ?>')">
+                <?= htmlspecialchars($user['username']) ?>
+            </button>
+        <?php } ?>
+    </div>
+</div>
 
        
         <div class="action-container hidden" id="ViewUserContainer">
