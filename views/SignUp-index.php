@@ -97,7 +97,7 @@
 
             // Execute the query and check if the insertion is successful
             if ($conn->query($sql) === TRUE) {
-                header("Location: login.php"); // Redirect to login page after successful signup
+                header("Location: Login-index.php"); // Redirect to login page after successful signup
                 exit();
             } else {
                 $validationMessage = "<div class='validation-message'>Error: " . $conn->error . "</div>";
@@ -115,7 +115,7 @@
         <?php if ($validationMessage): ?>
             <?php echo $validationMessage; ?>
         <?php endif; ?>
-        <form id="signup-form" action="" method="post" enctype="multipart/form-data">
+        <form id="signup-form" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="left-column">
                     <label for="signup-fullname">Full Name:</label>

@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="../public/css/Home-Style.css">
 </head>
 
+<?php 
+session_start(); // Start the session
+include '../config/DB.php'; // Include your database connection
+?>
+
 <body>
   <?php include('partials/Navigation-Index.php'); ?>
 
