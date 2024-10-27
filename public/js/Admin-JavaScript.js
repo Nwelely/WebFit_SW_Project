@@ -45,27 +45,6 @@ function toggleVisibility(containerId) {
     }
 }
 
-// document.querySelectorAll('#user-buttons button').forEach(button => {
-//     button.addEventListener('click', () => {
-//         const userId = button.dataset.userId;
-//         getUserData(userId);
-//     });
-// });
-
-// function getUserData(userId) {
-//     // AJAX request to fetch user data
-//     fetch(`/get_user_data.php?user_id=${userId}`)
-//         .then(response => response.json())
-//         .then(userData => {
-//             // Process the fetched user data
-//             console.log(userData);
-//             // Update the UI or perform other actions
-//         })
-//         .catch(error => {
-//             console.error('Error fetching user data:', error);
-//         });
-// }
-
 
 
 let selectedProductId = null;
@@ -83,49 +62,6 @@ async function selectProduct(productId) {
         });
 }
 
-let selectedMealId = null;
-async function selectMeal(mealId) {
-    selectedMealId = mealId;
-
-    await fetch(`/auth/meal/${mealId}`)
-        .then(response => response.json())
-        .then(meal => {
-            sessionStorage.setItem('selectedMeal', JSON.stringify(meal));
-            populateMealForms(meal);
-        })
-        .catch(error => {
-            console.error('Error fetching meal data:', error);
-        });
-}
-let selectedExerciseId = null;
-async function selectExercise(exerciseId) {
-    selectedExerciseId = exerciseId;
-
-    await fetch(`/auth/exercise/${exerciseId}`)
-        .then(response => response.json())
-        .then(exercise => {
-            sessionStorage.setItem('selectedExercise', JSON.stringify(exercise));
-            populateExerciseForms(exercise);
-        })
-        .catch(error => {
-            console.error('Error fetching exercise data:', error);
-        });
-}
-let selectedCoachId = null;
-async function selectCoach(coachId) {
-    selectedCoachId = coachId;
-
-    await fetch(`/auth/coach/${coachId}`)
-        .then(response => response.json())
-        .then(coach => {
-            sessionStorage.setItem('selectedCoach', JSON.stringify(coach));
-            populateCoachForms(coach);
-        })
-        .catch(error => {
-            console.error('Error fetching coach data:', error);
-        });
-}
-
 
 // Product
 function populateProductForms(product) {
@@ -140,118 +76,74 @@ function populateProductForms(product) {
 }
 
 
-// Meal
-function populateMealForms(meal) {
-    document.getElementById('editMealName').value = meal.mealname;
-    document.getElementById('newMealName').value = meal.mealname;
-    document.getElementById('newMealDescription').value = meal.mealdescription;
-
-    document.getElementById('removeMealName').value = meal.mealname;
-
-   
-    const ingredientsContainer = document.getElementById('newIngredientsContainer');
-    ingredientsContainer.innerHTML = '';
-
-    // Populate the ingredients
-    meal.ingredients.forEach((ingredient, index) => {
-        const ingredientGroup = document.createElement('div');
-        ingredientGroup.className = 'ingredient-group';
-        ingredientGroup.innerHTML = `
-            <input type="text" name="newIngredients[${index}][name]" placeholder="Ingredient Name" value="${ingredient.name}" required>
-            <input type="text" name="newIngredients[${index}][quantity]" placeholder="Quantity" value="${ingredient.quantity}" required>
-            <button type="button" class="remove-button" onclick="removeIngredient(this)">-</button>
-        `;
-        ingredientsContainer.appendChild(ingredientGroup);
-    });
-}
-
-// Exercise
-function populateExerciseForms(exercise) {
-    document.getElementById('editExerciseName').value = exercise.exercisename;
-    document.getElementById('newExerciseName').value = exercise.exercisename;
-    document.getElementById('exercisedescription').value = exercise.exercisedescription;
-    document.getElementById('exerciseimage').value = exercise.exerciseimage;
-
-    document.getElementById('removeExerciseName').value = exercise.exercisename;
-}
-
-
-// Coach
-function populateCoachForms(coach) {
-    document.getElementById('editCoachName').value = coach.coachname;
-    document.getElementById('newCoachName').value = coach.coachname;
-    document.getElementById('newCoachDescription').value = coach.coachdescription;
-    document.getElementById('editCoachImage').src = coach.coachimage || 'default-image.png';
-
-    document.getElementById('removeCoachName').value = coach.coachname;
-}
-
 function getUserData(userId) {
-    // Create a new XMLHttpRequest object
-    var xhr = new XMLHttpRequest();
-    
-    // Configure it: GET-request for the URL /api/getUser Data.php with userId as a query parameter
-    xhr.open('GET', '/api/getUser Data.php?id=' + userId, true);
-    
-    // Set up a function to handle the response
+    // Fetch user data using AJAX
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "show_user.php?view=" + userId, true);
     xhr.onload = function() {
         if (xhr.status === 200) {
-            // Parse the JSON response
-            var userData = JSON.parse(xhr.responseText);
-            
-            // Populate the user details in the appropriate HTML elements
-            document.getElementById('viewImage').src = userData.image; // assuming userData.image contains the image URL
-            document.getElementById('viewUsername').innerText = userData.username;
-            document.getElementById('viewFullName').innerText = userData.fullName;
-            document.getElementById('viewEmail').innerText = userData.email;
-            document.getElementById('viewPhone').innerText = userData.phone;
-            document.getElementById('viewRole').innerText = userData.role;
-            document.getElementById('viewGender').innerText = userData.gender;
-            document.getElementById('viewAge').innerText = userData.age;
-            document.getElementById('viewAddress').innerText = userData.address;
-            document.getElementById('viewSubscription').innerText = userData.subscription;
-
-            // Show the user details container
-            toggleVisibility('ViewUser Container');
-        } else {
-            console.error('Error retrieving user data: ' + xhr.statusText);
+            // Display the user data
+            document.getElementById("user-details").innerHTML = xhr.responseText;
+            document.getElementById("Userview").classList.remove("hidden"); // Show user details
         }
     };
-    
-    // Send the request
     xhr.send();
 }
 
-
-
-
-
-
-
 // user
-function viewUser() {
-    const user = JSON.parse(sessionStorage.getItem('selectedUser'));
+function viewUser(userId) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "show_user.php?view=" + userId, true); // Send GET request to fetch user data
 
-    document.getElementById('viewUsername').innerText = user.username;
-    document.getElementById('viewFullName').innerText = user.fullname;
-    document.getElementById('viewEmail').innerText = user.useremail;
-    document.getElementById('viewPhone').innerText = user.userphone;
-    document.getElementById('viewRole').innerText = user.role;
-    document.getElementById('viewGender').innerText = user.gender;
-    document.getElementById('viewAge').innerText = user.age;
-    document.getElementById('viewAddress').innerText = user.address;
-    document.getElementById('viewSubscription').innerText = user.Subscription;
-    document.getElementById('viewImage').src = user.img || 'default-image.png';
+    xhr.onload = function() {
+        console.log("Response Text:", xhr.responseText); // Log the raw response text
 
-    document.getElementById('ViewUserContainer').classList.remove('hidden');
+        if (xhr.status === 200) {
+            try {
+                const userData = JSON.parse(xhr.responseText); // Parse the JSON response
+
+                // Check if userData has valid properties
+                if (userData && !userData.error) {
+                    // Update the HTML elements with user data
+                    document.getElementById('viewImage').src = userData.img || 'default_image.png'; // Fallback image
+                    document.getElementById('viewUsername').innerText = userData.username || 'N/A';
+                    document.getElementById('viewFullName').innerText = userData.fullname || 'N/A';
+                    document.getElementById('viewEmail').innerText = userData.useremail || 'N/A';
+                    document.getElementById('viewPhone').innerText = userData.userphone || 'N/A';
+                    document.getElementById('viewRole').innerText = userData.role || 'N/A';
+                    document.getElementById('viewGender').innerText = userData.gender || 'N/A';
+                    document.getElementById('viewAge').innerText = userData.age || 'N/A';
+                    document.getElementById('viewAddress').innerText = userData.address || 'N/A';
+                    document.getElementById('viewSubscription').innerText = userData.subscription || 'N/A';
+
+                    // Show the user details container
+                    toggleVisibility('ViewUserContainer');
+                } else {
+                    console.error("User data not found:", userData.error || "Unknown error");
+                }
+            } catch (e) {
+                console.error("Error parsing JSON:", e);
+            }
+        } else {
+            console.error("Error fetching user data: ", xhr.status, xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error("Request failed"); // Log if the request fails
+    };
+
+    xhr.send(); // Send the request
 }
+
+
 
 function editUser() {
     const user = JSON.parse(sessionStorage.getItem('selectedUser'));
 
     document.getElementById('editUsersName').value = user.username;
     document.getElementById('newUsersFullName').value = user.fullname;
-    document.getElementById('UsersPassword').value = user.password; // Do not pre-fill passwords
+    document.getElementById('UsersPassword').value = user.password; 
     document.getElementById('userphone').value = user.userphone;
     document.getElementById('edituseremail').value = user.useremail;
     document.getElementById('editUsersrole').value = user.role;
@@ -284,38 +176,6 @@ function removeUser() {
     }
 }
 
-// Call this function to delete the user
-async function confirmRemoveUser() {
-    const userId = window.selectedUserId; // Get the user ID from the global variable
-
-    if (!userId) {
-        console.error("User ID is not set.");
-        return;
-    }
-
-    try {
-        const response = await fetch(`/auth/user/${userId}`, {
-            method: 'DELETE'
-        });
-
-        const data = await response.json();
-        if (data.error) {
-            alert(data.error);
-        } else {
-            alert(data.message);
-            // Optionally, hide the remove user container or refresh the user list
-            toggleVisibility('removeUserContainer');
-        }
-    } catch (error) {
-        console.error('Error deleting user:', error);
-    }
-}
-
-// Example of calling the delete function on link click
-document.querySelector('.submenu-link').addEventListener('click', function() {
-    toggleVisibility('removeUserContainer'); // Show the confirmation modal or container
-    confirmRemoveUser(); // Call the confirm function to proceed with deletion
-});
 
 
 // Event listener for editing user form
