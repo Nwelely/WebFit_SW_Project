@@ -30,7 +30,7 @@
           <?php } ?>
         <?php } ?>
       <?php } else { ?>
-        <a id="login-link" href="/WebFit_SW_Project/views/login-index.php">Login</a>
+        <a id="login-link" href="/NEWWEbFIT_SW_PROJECT/views/login-index.php">Login</a>
       <?php } ?>
     </nav>
   </div>

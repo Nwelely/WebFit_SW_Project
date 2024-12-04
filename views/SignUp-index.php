@@ -171,7 +171,7 @@
             </div>
 
             <button type="submit" name="signup" class="signup-container-button">Signup</button>
-            <button type="button" class="back-to-login" onclick="window.location.href='/WebFit_SW_Project/views/login-index.php';">Back to Login</button>
+            <button type="button" class="back-to-login" onclick="window.location.href='/NEWWEbFIT_SW_PROJECT/views/login-index.php';">Back to Login</button>
         </form>
     </div>
 
